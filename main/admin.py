@@ -13,11 +13,32 @@ class CarAdmin(admin.ModelAdmin):
     inlines = [ImageInline]
 
 
-@admin.register(models.VehicleDetails)
+@admin.register(models.CarSubmission)
 class DetailAdmin(admin.ModelAdmin):
-    list_display = ('Car',)
+    list_display = ('Make', 'Model', )
 
 
 @admin.register(models.Plates)
 class PlatesAdmin(admin.ModelAdmin):
     list_display = ('Number', 'Price', )
+
+@admin.register(models.FuelType)
+class FuelTypeAdmin(admin.ModelAdmin):
+    list_display = ('name', )
+
+@admin.register(models.TransmissionType)
+class TransmissionTypeAdmin(admin.ModelAdmin):
+    list_display = ('name', )
+
+@admin.register(models.TyreCondition)
+class TyreConditionAdmin(admin.ModelAdmin):
+    list_display = ('name', )
+
+
+@admin.register(models.Body)
+class TyreConditionAdmin(admin.ModelAdmin):
+    list_display = ('name', )
+
+@admin.register(models.CallBack)
+class CallBackAdmin(admin.ModelAdmin):
+    list_display = ('FirstName', 'PhoneNumber', )
