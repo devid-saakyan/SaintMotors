@@ -36,8 +36,18 @@ class TyreConditionAdmin(admin.ModelAdmin):
 
 
 @admin.register(models.Body)
-class TyreConditionAdmin(admin.ModelAdmin):
+class BodyAdmin(admin.ModelAdmin):
     list_display = ('name', )
+
+
+@admin.register(models.Make)
+class MakeAdmin(admin.ModelAdmin):
+    list_display = ('name', )
+
+@admin.register(models.Model)
+class ModelAdmin(admin.ModelAdmin):
+    list_display = ('name', )
+
 
 @admin.register(models.CallBack)
 class CallBackAdmin(admin.ModelAdmin):

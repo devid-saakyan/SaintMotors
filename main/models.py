@@ -24,6 +24,8 @@ class Make(models.Model):
 class Model(models.Model):
     name = models.CharField(max_length=50, unique=True)
     make = models.ForeignKey(Make, on_delete=models.SET_NULL, null=True, blank=True)
+    def __str__(self):
+        return self.name
 
 
 class Body(models.Model):
@@ -101,3 +103,5 @@ class Plates(models.Model):
     Document = models.CharField(max_length=50)
     Transfer = models.CharField(max_length=50)
     Price = models.IntegerField()
+    def __str__(self):
+        return self.Number
