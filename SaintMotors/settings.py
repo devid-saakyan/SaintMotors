@@ -56,7 +56,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.common.CommonMiddleware',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -64,6 +63,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8010',
     'http://127.0.0.1:8001',
     'http://127.0.0.1:8010',
+    'http://192.168.0.23:8087'
 ]
 
 CORS_ALLOW_METHODS = [
@@ -76,6 +76,7 @@ CORS_ALLOW_METHODS = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'SaintMotors.urls'
 
