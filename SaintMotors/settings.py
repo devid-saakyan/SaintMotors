@@ -48,8 +48,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -87,6 +87,13 @@ CORS_ORIGIN_WHITELIST = [
     'http://127.0.0.1:8001',
 ]
 
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://api.saintmotors.com',
+    'http://localhost:8010',
+    'http://127.0.0.1:8001',
+    'http://127.0.0.1:8010',
+]
 
 #CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
