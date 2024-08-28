@@ -9,10 +9,10 @@ class CarPagination(PageNumberPagination):
 
     def get_paginated_response(self, data):
         return Response({
-            'pageCount': self.page.paginator.num_pages,  # Общее количество страниц
-            'itemCount': self.page.paginator.count,  # Общее количество элементов
-            'currentPage': self.page.number,  # Текущая страница
-            'pageSize': self.page_size,  # Количество элементов на странице
-            'results': data  # Сами данные
+            'pageCount': self.page.paginator.num_pages,
+            'itemCount': self.page.paginator.count,
+            'currentPage': self.page.number,
+            'pageSize': self.page_size,
+            'results': data
         })
 
