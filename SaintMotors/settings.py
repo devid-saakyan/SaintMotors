@@ -59,6 +59,13 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://api.saintmotors.com',
+    'http://localhost:8010',
+    'http://127.0.0.1:8001',
+    'http://127.0.0.1:8010',
+]
+
 CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'SaintMotors.urls'
