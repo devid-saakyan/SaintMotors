@@ -96,6 +96,10 @@ SPECTACULAR_SETTINGS = {
     'SERVE_INCLUDE_SCHEMA': True,
 }
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://api.saintmotors.com',
+]
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
