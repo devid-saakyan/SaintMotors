@@ -17,6 +17,7 @@ class FuelType(models.Model):
 
 class Make(models.Model):
     name = models.CharField(max_length=50, unique=True)
+    logo = models.ImageField(upload_to='car_logos/')
     def __str__(self):
         return self.name
 
@@ -54,6 +55,7 @@ class Car(models.Model):
     CC = models.IntegerField()
     CO2 = models.IntegerField()
     Year = models.IntegerField()
+    Price = models.IntegerField()
     Insurance = models.CharField(max_length=100)
     About = models.CharField(max_length=500)
 
@@ -96,6 +98,11 @@ class CallBack(models.Model):
 class CarImage(models.Model):
     car = models.ForeignKey(Car, related_name='images', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='car_images/')
+
+
+class CarSubmissionPhoto(models.Model):
+    car_sub = models.ForeignKey(CarSubmission, on_delete=models.CASCADE, related_name='photos')
+    image = models.ImageField(upload_to='car_sub_images/')
 
 
 class Plates(models.Model):

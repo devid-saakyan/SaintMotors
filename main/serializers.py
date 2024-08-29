@@ -51,6 +51,9 @@ class BodyTypeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+
+
+
 class CallBackSerializer(serializers.ModelSerializer):
     class Meta:
         model = CallBack

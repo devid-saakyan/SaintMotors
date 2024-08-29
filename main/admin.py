@@ -6,6 +6,10 @@ class ImageInline(admin.TabularInline):
     model = models.CarImage
     extra = 3
 
+class CarSubPhotoInline(admin.TabularInline):
+    model = models.CarSubmissionPhoto
+    extra = 3
+
 
 @admin.register(models.Car)
 class CarAdmin(admin.ModelAdmin):
@@ -15,6 +19,7 @@ class CarAdmin(admin.ModelAdmin):
 
 @admin.register(models.CarSubmission)
 class DetailAdmin(admin.ModelAdmin):
+    inlines = [CarSubPhotoInline]
     list_display = ('Make', 'Model', )
 
 
@@ -42,7 +47,7 @@ class BodyAdmin(admin.ModelAdmin):
 
 @admin.register(models.Make)
 class MakeAdmin(admin.ModelAdmin):
-    list_display = ('name', )
+    list_display = ('name', 'logo', )
 
 @admin.register(models.Model)
 class ModelAdmin(admin.ModelAdmin):
