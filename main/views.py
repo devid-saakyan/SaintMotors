@@ -97,6 +97,11 @@ class BodyTypeViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = BodyTypeSerializer
 
 
+class MakeViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Make.objects.all()
+    serializer_class = MakeSerializer
+
+
 @api_view(['POST'])
 def car_submission_api(request):
     if request.method == 'POST':
