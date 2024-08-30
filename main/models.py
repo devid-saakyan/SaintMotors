@@ -11,6 +11,7 @@ class TransmissionType(models.Model):
 
 class FuelType(models.Model):
     name = models.CharField(max_length=50, unique=True)
+
     def __str__(self):
         return self.name
 
@@ -18,6 +19,7 @@ class FuelType(models.Model):
 class Make(models.Model):
     name = models.CharField(max_length=50, unique=True)
     logo = models.ImageField(upload_to='car_logos/')
+
     def __str__(self):
         return self.name
 
@@ -25,18 +27,29 @@ class Make(models.Model):
 class Model(models.Model):
     name = models.CharField(max_length=50, unique=True)
     make = models.ForeignKey(Make, on_delete=models.SET_NULL, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Color(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    hex = models.CharField(max_length=50, unique=True)
+
     def __str__(self):
         return self.name
 
 
 class Body(models.Model):
     name = models.CharField(max_length=50, unique=True)
+
     def __str__(self):
         return self.name
 
 
 class TyreCondition(models.Model):
     name = models.CharField(max_length=50, unique=True)
+
     def __str__(self):
         return self.name
 
@@ -47,7 +60,7 @@ class Car(models.Model):
     BodyType = models.ForeignKey(Body, on_delete=models.SET_NULL, null=True, blank=True)
     Name = models.CharField(max_length=100)
     Transmission = models.ForeignKey(TransmissionType, on_delete=models.SET_NULL, null=True, blank=True)
-    Color = models.CharField(max_length=50)
+    Color = models.ForeignKey(Color, on_delete=models.SET_NULL, null=True, blank=True)
     Mileage = models.CharField(max_length=50)
     Fuel = models.ForeignKey(FuelType, on_delete=models.SET_NULL, null=True, blank=True)
     BHP = models.IntegerField()
@@ -113,5 +126,6 @@ class Plates(models.Model):
     Document = models.CharField(max_length=50)
     Transfer = models.CharField(max_length=50)
     Price = models.IntegerField()
+
     def __str__(self):
         return self.Number

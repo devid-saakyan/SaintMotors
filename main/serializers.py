@@ -13,6 +13,13 @@ class MakeSerializer(serializers.ModelSerializer):
         model = Make
         fields = '__all__'
 
+
+class ModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Model
+        fields = '__all__'
+
+
 class CarSerializer(serializers.ModelSerializer):
     images = CarImageSerializer(many=True, read_only=True)
     Logo = serializers.SerializerMethodField()

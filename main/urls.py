@@ -12,6 +12,7 @@ router.register(r'CallBack', CallBackViewSet, basename='CallBack')
 router.register(r'TyreCondition', TyreConditionViewSet, basename='Tyre')
 router.register(r'BodyTypes', BodyTypeViewSet, basename='Body')
 router.register(r'Make', MakeViewSet, basename='Make')
+router.register(r'Model', ModelViewSet, basename='Model')
 
 urlpatterns = [
     path('', include(router.urls)),

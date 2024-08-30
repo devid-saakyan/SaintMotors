@@ -5,6 +5,7 @@ from .pagination import CarPagination
 from drf_spectacular.utils import extend_schema, OpenApiResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework.decorators import action
 from rest_framework import status
 from django.shortcuts import render, redirect
 from .forms import CarSubmissionForm
@@ -101,6 +102,18 @@ class BodyTypeViewSet(viewsets.ReadOnlyModelViewSet):
 class MakeViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Make.objects.all()
     serializer_class = MakeSerializer
+
+
+class ModelViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Model.objects.all()
+    serializer_class = ModelSerializer
+
+    @action(detail=True, methods=['get'])
+    def by_make(self, request, pk=None):
+        make = Make.objects.get(pk=pk)
+        models = Model.objects.filter(make=make)
+        serializer = self.get_serializer(models, many=True)
+        return Response(serializer.data)
 
 
 @api_view(['POST'])

@@ -53,6 +53,10 @@ class MakeAdmin(admin.ModelAdmin):
 class ModelAdmin(admin.ModelAdmin):
     list_display = ('name', )
 
+@admin.register(models.Color)
+class ColorAdmin(admin.ModelAdmin):
+    list_display = ('name', )
+
 
 @admin.register(models.CallBack)
 class CallBackAdmin(admin.ModelAdmin):
