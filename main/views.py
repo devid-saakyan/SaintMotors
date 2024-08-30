@@ -72,6 +72,7 @@ class CarSubmissionViewSet(viewsets.ModelViewSet):
     queryset = CarSubmission.objects.all()
     serializer_class = CarSubmissionSerializer
 
+
 class CallBackViewSet(viewsets.ModelViewSet):
     queryset = CallBack.objects.all()
     serializer_class = CallBackSerializer

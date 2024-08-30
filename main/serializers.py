@@ -7,12 +7,30 @@ class CarImageSerializer(serializers.ModelSerializer):
         model = CarImage
         fields = ['image']
 
+
+class MakeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Make
+        fields = '__all__'
+
 class CarSerializer(serializers.ModelSerializer):
     images = CarImageSerializer(many=True, read_only=True)
+    Logo = serializers.SerializerMethodField()
+    FuelName = serializers.SerializerMethodField()
 
     class Meta:
         model = Car
         fields = '__all__'
+
+    def get_Logo(self, obj):
+        request = self.context.get('request')
+        logo_url = obj.Make.logo.url if obj.Make else None
+        if logo_url and request:
+            return request.build_absolute_uri(logo_url)
+        return logo_url
+
+    def get_FuelName(self, obj):
+        return obj.Fuel.name if obj.Make else None
 
 
 class PlatesSerializer(serializers.ModelSerializer):
@@ -51,10 +69,7 @@ class BodyTypeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class MakeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Make
-        fields = '__all__'
+
 
 
 class CallBackSerializer(serializers.ModelSerializer):

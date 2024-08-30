@@ -59,6 +59,9 @@ class Car(models.Model):
     Insurance = models.CharField(max_length=100)
     About = models.CharField(max_length=500)
 
+    @property
+    def logo(self):
+        return self.Make.logo.url if self.Make and self.Make.logo else None
 
 
 
