@@ -94,6 +94,11 @@ class TyreConditionViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = TyreConditionSerializer
 
 
+class TyreBrandViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = TyreBrand.objects.all()
+    serializer_class = TyreBrandSerializer
+
+
 class BodyTypeViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Body.objects.all()
     serializer_class = BodyTypeSerializer

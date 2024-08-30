@@ -40,6 +40,11 @@ class TyreConditionAdmin(admin.ModelAdmin):
     list_display = ('name', )
 
 
+@admin.register(models.TyreBrand)
+class TyreBrandAdmin(admin.ModelAdmin):
+    list_display = ('name', )
+
+
 @admin.register(models.Body)
 class BodyAdmin(admin.ModelAdmin):
     list_display = ('name', )

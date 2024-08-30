@@ -53,6 +53,14 @@ class TyreCondition(models.Model):
     def __str__(self):
         return self.name
 
+
+class TyreBrand(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Car(models.Model):
     '''Model for car information'''
     Make = models.ForeignKey(Make, on_delete=models.SET_NULL, null=True, blank=True)

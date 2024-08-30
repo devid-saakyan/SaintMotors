@@ -76,6 +76,12 @@ class TyreConditionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class TyreBrandSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TyreBrand
+        fields = '__all__'
+
+
 class BodyTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Body
