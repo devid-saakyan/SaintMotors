@@ -89,9 +89,9 @@ class Car(models.Model):
 class CarSubmission(models.Model):
     '''Vehicle Details for car registration'''
     Make = models.ForeignKey(Make, on_delete=models.SET_NULL, null=True, blank=True)
-    MakeName = models.CharField(max_length=50)
+    MakeName = models.CharField(max_length=50, null=True, blank=True)
     Model = models.ForeignKey(Model, on_delete=models.SET_NULL, null=True, blank=True)
-    ModelName = models.CharField(max_length=50)
+    ModelName = models.CharField(max_length=50, null=True, blank=True)
     Registration = models.CharField(max_length=50)
     Year = models.IntegerField()
     Mileage = models.IntegerField()
