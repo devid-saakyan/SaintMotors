@@ -20,6 +20,12 @@ class ModelSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class ColorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Color
+        fields = '__all__'
+
+
 class CarSerializer(serializers.ModelSerializer):
     images = CarImageSerializer(many=True, read_only=True)
     Logo = serializers.SerializerMethodField()

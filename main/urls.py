@@ -13,6 +13,7 @@ router.register(r'TyreCondition', TyreConditionViewSet, basename='Tyre')
 router.register(r'BodyTypes', BodyTypeViewSet, basename='Body')
 router.register(r'Make', MakeViewSet, basename='Make')
 router.register(r'Model', ModelViewSet, basename='Model')
+router.register(r'Color', ColorViewSet, basename='Color')
 
 urlpatterns = [
     path('', include(router.urls)),

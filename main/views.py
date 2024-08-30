@@ -116,6 +116,11 @@ class ModelViewSet(viewsets.ReadOnlyModelViewSet):
         return Response(serializer.data)
 
 
+class ColorViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Color.objects.all()
+    serializer_class = ColorSerializer
+
+
 @api_view(['POST'])
 def car_submission_api(request):
     if request.method == 'POST':
@@ -124,6 +129,7 @@ def car_submission_api(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(['POST'])
 def call_back_api(request):
