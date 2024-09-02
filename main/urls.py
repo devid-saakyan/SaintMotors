@@ -16,6 +16,8 @@ router.register(r'Make', MakeViewSet, basename='Make')
 router.register(r'Model', ModelViewSet, basename='Model')
 router.register(r'Color', ColorViewSet, basename='Color')
 
+
 urlpatterns = [
     path('', include(router.urls)),
+    path('car-submissions/<int:car_submission_id>/upload-photos/', CarPhotoUploadView.as_view(), name='upload-car-photos'),
 ]

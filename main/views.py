@@ -2,13 +2,14 @@ from rest_framework import viewsets
 from .models import Car, Plates
 from .serializers import *
 from .pagination import CarPagination
-from drf_spectacular.utils import extend_schema, OpenApiResponse
+from drf_spectacular.utils import extend_schema, OpenApiResponse, OpenApiTypes
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.decorators import action
 from rest_framework import status
-from django.shortcuts import render, redirect
-from .forms import CarSubmissionForm
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.views import APIView
+
 
 class CarViewSet(viewsets.ModelViewSet):
     queryset = Car.objects.all().order_by('id')
@@ -131,8 +132,8 @@ def car_submission_api(request):
     if request.method == 'POST':
         serializer = CarSubmissionSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            car_submission = serializer.save()
+            return Response({'id': car_submission.id, **serializer.data}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -144,3 +145,39 @@ def call_back_api(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@extend_schema(
+    request={
+        'multipart/form-data': {
+            'properties': {
+                'images': {
+                    'type': 'array',
+                    'items': {
+                        'type': 'string',
+                        'format': 'binary'
+                    }
+                }
+            }
+        }
+    },
+    responses={201: CarPhotoSerializer(many=True)},
+)
+class CarPhotoUploadView(APIView):
+    parser_classes = (MultiPartParser, FormParser)
+
+    def post(self, request, car_submission_id):
+        try:
+            car_submission = CarSubmission.objects.get(id=car_submission_id)
+        except CarSubmission.DoesNotExist:
+            return Response({"error": "CarSubmission not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        files = request.FILES.getlist('images')
+        photos = []
+        for file in files:
+            photo = CarPhoto(car_submission=car_submission, image=file)
+            photo.save()
+            photos.append(photo)
+
+        serializer = CarPhotoSerializer(photos, many=True)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)

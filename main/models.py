@@ -117,6 +117,7 @@ class CallBack(models.Model):
     PhoneNumber = models.CharField(max_length=50)
     email = models.EmailField(max_length=40)
     Message = models.CharField(max_length=1000)
+    SubId = models.ForeignKey(CarSubmission, null=True, blank=True, on_delete=models.CASCADE)
 
 
 class CarImage(models.Model):
@@ -125,8 +126,16 @@ class CarImage(models.Model):
 
 
 class CarSubmissionPhoto(models.Model):
-    car_sub = models.ForeignKey(CarSubmission, on_delete=models.CASCADE, related_name='photos')
+    car_sub = models.ForeignKey(CarSubmission, related_name='submission_photos', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='car_sub_images/')
+
+
+class CarPhoto(models.Model):
+    car_submission = models.ForeignKey(CarSubmission, related_name='photos', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='car_photos/')
+
+    def __str__(self):
+        return f"Photo for {self.car_submission.Model}"
 
 
 class Plates(models.Model):

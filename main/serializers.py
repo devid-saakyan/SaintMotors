@@ -52,6 +52,12 @@ class PlatesSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class CarPhotoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CarPhoto
+        fields = '__all__'
+
+
 class CarSubmissionSerializer(serializers.ModelSerializer):
     class Meta:
         model = CarSubmission

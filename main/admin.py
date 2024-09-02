@@ -66,3 +66,8 @@ class ColorAdmin(admin.ModelAdmin):
 @admin.register(models.CallBack)
 class CallBackAdmin(admin.ModelAdmin):
     list_display = ('FirstName', 'PhoneNumber', )
+
+
+@admin.register(models.CarPhoto)
+class CarPhotoAdmin(admin.ModelAdmin):
+    list_display = ('image', 'car_submission')
