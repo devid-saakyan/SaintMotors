@@ -31,8 +31,9 @@ from drf_yasg import openapi
 
 SWAGGER_SETTINGS = {
     'USE_SESSION_AUTH': False,
-    'DEFAULT_API_URL': 'https://api.saintmotors.com/api/',
+    'DEFAULT_API_URL': 'https://api.saintmotors.com/',
 }
+
 
 import mimetypes
 
@@ -140,6 +141,9 @@ SPECTACULAR_SETTINGS = {
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': True,
 }
+
+
+
 
 
 # Password validation
