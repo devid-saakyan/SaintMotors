@@ -3,9 +3,15 @@ from .models import *
 
 
 class CarImageSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
     class Meta:
         model = CarImage
         fields = ['image']
+
+    def get_image(self, obj):
+        request = self.context.get('request')
+        return request.build_absolute_uri(obj.image.url)
 
 
 class MakeSerializer(serializers.ModelSerializer):
@@ -92,7 +98,6 @@ class BodyTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Body
         fields = '__all__'
-
 
 
 
