@@ -27,6 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+from drf_yasg import openapi
+
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,
+    'DEFAULT_API_URL': 'https://api.saintmotors.com/api/',
+}
+
 import mimetypes
 
 mimetypes.add_type("text/javascript", ".js", True)
@@ -90,6 +97,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://api.saintmotors.com',
 ]
 
+
 ROOT_URLCONF = 'SaintMotors.urls'
 
 TEMPLATES = [
@@ -127,15 +135,11 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Your API Title',
-    'DESCRIPTION': 'Your API description',
+    'TITLE': 'SaintMotors',
+    'DESCRIPTION': 'API',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': True,
 }
-
-CSRF_TRUSTED_ORIGINS = [
-    'https://api.saintmotors.com',
-]
 
 
 # Password validation
