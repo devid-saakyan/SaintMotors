@@ -1,17 +1,12 @@
 from rest_framework import serializers
 from .models import *
+from django.conf import settings
 
 
 class CarImageSerializer(serializers.ModelSerializer):
-    image = serializers.SerializerMethodField()
-
     class Meta:
         model = CarImage
         fields = ['image']
-
-    def get_image(self, obj):
-        request = self.context.get('request')
-        return request.build_absolute_uri(obj.image.url) if request else obj.image.url
 
 
 class MakeSerializer(serializers.ModelSerializer):
@@ -44,8 +39,9 @@ class CarSerializer(serializers.ModelSerializer):
     def get_Logo(self, obj):
         request = self.context.get('request')
         logo_url = obj.Make.logo.url if obj.Make else None
-        if logo_url and request:
-            return request.build_absolute_uri(logo_url)
+        if logo_url:
+            full_logo_url = request.build_absolute_uri(logo_url) if request else f"https://api.saintmotors.com{logo_url}"
+            return full_logo_url
         return logo_url
 
     def get_FuelName(self, obj):
