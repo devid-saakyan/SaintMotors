@@ -79,22 +79,16 @@ CORS_ALLOW_HEADERS = [
     'x-requested-with',
 ]
 
-
-# CORS_ORIGIN_WHITELIST = [
-#     'https://api.saintmotors.com',
-#     'http://192.168.0.23:8087',
-#     'http://localhost:8010',
-#     'http://127.0.0.1:8001',
+# CORS_ALLOWED_ORIGINS = [
+#     "https://api.saintmotors.com",
+#     "http://192.168.0.23:8087",
 # ]
-#
-#
-CORS_ALLOWED_ORIGINS = [
-    "https://api.saintmotors.com",
-    "http://192.168.0.23:8087",
-]
 
 CORS_ALLOW_ALL_ORIGINS = True
-#CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://api.saintmotors.com',
+]
 
 ROOT_URLCONF = 'SaintMotors.urls'
 
