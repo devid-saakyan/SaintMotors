@@ -2,8 +2,8 @@ from rest_framework import serializers
 from .models import *
 from django.conf import settings
 
-
 base_url = 'https://api.saintmotors.com'
+
 
 class CarImageSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField()
@@ -56,7 +56,6 @@ class CarSerializer(serializers.ModelSerializer):
         return obj.Fuel.name if obj.Make else None
 
 
-
 class PlatesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Plates
@@ -64,7 +63,6 @@ class PlatesSerializer(serializers.ModelSerializer):
 
 
 class CarPhotoSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = CarPhoto
         fields = '__all__'
@@ -116,3 +114,9 @@ class CarOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = CarOption
         fields = ['id', 'name', 'category']
+
+
+class OptionCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OptionCategory
+        fields = '__all__'

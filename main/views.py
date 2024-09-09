@@ -140,6 +140,10 @@ class CarOptionsSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = CarOptionSerializer
 
 
+class OptionCategorySet(viewsets.ReadOnlyModelViewSet):
+    queryset = OptionCategory.objects.all()
+    serializer_class = OptionCategorySerializer
+
 
 class ColorViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Color.objects.all()
