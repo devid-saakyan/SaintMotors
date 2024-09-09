@@ -61,6 +61,21 @@ class TyreBrand(models.Model):
         return self.name
 
 
+class OptionCategory(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
+class CarOption(models.Model):
+    category = models.ForeignKey(OptionCategory, related_name='options', on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f'{self.category.name} - {self.name}'
+
+
 class Car(models.Model):
     '''Model for car information'''
     Make = models.ForeignKey(Make, on_delete=models.SET_NULL, null=True, blank=True)
@@ -79,6 +94,7 @@ class Car(models.Model):
     Price = models.IntegerField()
     Insurance = models.CharField(max_length=100)
     About = models.CharField(max_length=500)
+    Options = models.ManyToManyField(CarOption, related_name='cars',  blank=True, null=True)
 
     @property
     def logo(self):

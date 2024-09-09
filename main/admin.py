@@ -71,3 +71,13 @@ class CallBackAdmin(admin.ModelAdmin):
 @admin.register(models.CarPhoto)
 class CarPhotoAdmin(admin.ModelAdmin):
     list_display = ('image', 'car_submission')
+
+
+@admin.register(models.OptionCategory)
+class CarOptionCategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', )
+
+
+@admin.register(models.CarOption)
+class CarOptionAdmin(admin.ModelAdmin):
+    list_display = ('name', 'category', )

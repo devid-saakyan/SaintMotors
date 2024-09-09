@@ -49,13 +49,12 @@ class CarSerializer(serializers.ModelSerializer):
     def get_Logo(self, obj):
         request = self.context.get('request')
         logo_url = obj.Make.logo.url if obj.Make else None
-        if logo_url:
-            full_logo_url = f"{base_url}{logo_url}"
-            return full_logo_url
-        return logo_url
+        full_logo_url = f"{base_url}{logo_url}"
+        return full_logo_url
 
     def get_FuelName(self, obj):
         return obj.Fuel.name if obj.Make else None
+
 
 
 class PlatesSerializer(serializers.ModelSerializer):
@@ -65,6 +64,7 @@ class PlatesSerializer(serializers.ModelSerializer):
 
 
 class CarPhotoSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = CarPhoto
         fields = '__all__'
@@ -106,9 +106,13 @@ class BodyTypeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
-
 class CallBackSerializer(serializers.ModelSerializer):
     class Meta:
         model = CallBack
         fields = '__all__'
+
+
+class CarOptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CarOption
+        fields = ['id', 'name', 'category']

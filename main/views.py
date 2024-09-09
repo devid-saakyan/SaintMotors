@@ -46,6 +46,12 @@ class CarViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(queryset, many=True, context={'request': request})
         return Response(serializer.data)
 
+    @action(detail=True, methods=['get'], url_path='options')
+    def get_options(self, request, pk=None):
+        car = self.get_object()
+        options = car.Options.all()
+        serializer = CarOptionSerializer(options, many=True)
+        return Response(serializer.data)
 
 
 class PlatesViewSet(viewsets.ModelViewSet):
@@ -127,6 +133,12 @@ class ModelViewSet(viewsets.ReadOnlyModelViewSet):
         models = Model.objects.filter(make=make)
         serializer = self.get_serializer(models, many=True)
         return Response(serializer.data)
+
+
+class CarOptionsSet(viewsets.ReadOnlyModelViewSet):
+    queryset = CarOption.objects.all()
+    serializer_class = CarOptionSerializer
+
 
 
 class ColorViewSet(viewsets.ReadOnlyModelViewSet):
