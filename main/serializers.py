@@ -123,8 +123,8 @@ class OptionCategorySerializer(serializers.ModelSerializer):
 
 
 class OptionCategoryWithOptionsSerializer(serializers.ModelSerializer):
-    options = CarOptionSerializer(many=True, read_only=True)
+    option = CarOptionSerializer(many=True, read_only=True, source='options')
 
     class Meta:
         model = OptionCategory
-        fields = ['id', 'name', 'options']
+        fields = ['id', 'name', 'option']

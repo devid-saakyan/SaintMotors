@@ -49,8 +49,8 @@ class CarViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['get'], url_path='options')
     def get_options(self, request, pk=None):
         car = self.get_object()
-        options = car.Options.all()
-        categories = OptionCategory.objects.filter(options__in=options).distinct()
+        option = car.Options.all()
+        categories = OptionCategory.objects.filter(options__in=option).distinct()
         serializer = OptionCategoryWithOptionsSerializer(categories, many=True)
         return Response(serializer.data)
 
