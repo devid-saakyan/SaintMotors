@@ -50,7 +50,8 @@ class CarViewSet(viewsets.ModelViewSet):
     def get_options(self, request, pk=None):
         car = self.get_object()
         options = car.Options.all()
-        serializer = CarOptionSerializer(options, many=True)
+        categories = OptionCategory.objects.filter(options__in=options).distinct()
+        serializer = OptionCategoryWithOptionsSerializer(categories, many=True)
         return Response(serializer.data)
 
 
@@ -142,7 +143,7 @@ class CarOptionsSet(viewsets.ReadOnlyModelViewSet):
 
 class OptionCategorySet(viewsets.ReadOnlyModelViewSet):
     queryset = OptionCategory.objects.all()
-    serializer_class = OptionCategorySerializer
+    serializer_class = OptionCategoryWithOptionsSerializer
 
 
 class ColorViewSet(viewsets.ReadOnlyModelViewSet):
