@@ -128,3 +128,18 @@ class OptionCategoryWithOptionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = OptionCategory
         fields = ['id', 'name', 'option']
+
+
+class HomepageSerializer(serializers.ModelSerializer):
+    image1 = serializers.SerializerMethodField()
+    image2 = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Homepage
+        fields = '__all__'
+
+    def get_image1(self, obj):
+        return f"{base_url}{obj.image1.url}"
+
+    def get_image2(self, obj):
+        return f"{base_url}{obj.image2.url}"

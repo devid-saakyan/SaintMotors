@@ -151,6 +151,11 @@ class ColorViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ColorSerializer
 
 
+class HomepageViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Homepage.objects.all()
+    serializer_class = HomepageSerializer
+
+
 @api_view(['POST'])
 def car_submission_api(request):
     if request.method == 'POST':

@@ -81,3 +81,8 @@ class CarOptionCategoryAdmin(admin.ModelAdmin):
 @admin.register(models.CarOption)
 class CarOptionAdmin(admin.ModelAdmin):
     list_display = ('name', 'category', )
+
+
+@admin.register(models.Homepage)
+class HomepageAdmin(admin.ModelAdmin):
+    list_display = ('title', )

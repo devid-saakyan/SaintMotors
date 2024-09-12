@@ -17,6 +17,7 @@ router.register(r'Model', ModelViewSet, basename='Model')
 router.register(r'Color', ColorViewSet, basename='Color')
 router.register(r'CarOptions', CarOptionsSet, basename='CarOptions')
 router.register(r'OptionCategory', OptionCategorySet, basename='OptionCategory')
+router.register(r'homepage', HomepageViewSet, basename='Homepage')
 
 
 urlpatterns = [

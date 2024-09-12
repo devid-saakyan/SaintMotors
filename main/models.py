@@ -154,6 +154,16 @@ class CarPhoto(models.Model):
         return f"Photo for {self.car_submission.Model}"
 
 
+class Homepage(models.Model):
+    title = models.CharField(max_length=100)
+    image1 = models.ImageField(upload_to='homepage_images/')
+    image2 = models.ImageField(upload_to='homepage_images/')
+    description = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+
 class Plates(models.Model):
     Number = models.CharField(max_length=50)
     Document = models.CharField(max_length=50)
