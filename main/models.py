@@ -92,8 +92,8 @@ class Car(models.Model):
     CO2 = models.IntegerField(null=True, blank=True)
     Year = models.IntegerField(null=True, blank=True)
     Price = models.IntegerField(null=True, blank=True)
-    Insurance = models.CharField(max_length=100)
-    About = models.CharField(max_length=500)
+    Insurance = models.CharField(max_length=100, null=True, blank=True)
+    About = models.CharField(max_length=500, null=True, blank=True)
     Options = models.ManyToManyField(CarOption, related_name='cars',  blank=True, null=True)
 
     @property
